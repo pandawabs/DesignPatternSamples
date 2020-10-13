@@ -6,7 +6,7 @@
 
     class Squeak implements IQuackBehavior {
 
-        public function quack(){
+        public function quack() {
 
             print("Squeak!".PHP_EOL);
         }

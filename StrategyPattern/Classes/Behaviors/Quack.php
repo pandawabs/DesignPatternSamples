@@ -6,7 +6,7 @@
 
     class Quack implements IQuackBehavior {
 
-        public function quack(){
+        public function quack() {
 
             print("Quack!".PHP_EOL);
         }

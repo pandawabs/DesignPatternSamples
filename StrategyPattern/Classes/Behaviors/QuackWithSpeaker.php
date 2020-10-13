@@ -6,7 +6,7 @@
 
     class QuackWithSpeaker implements IQuackBehavior {
 
-        public function quack(){
+        public function quack() {
 
             print("High-Volumed Quack!".PHP_EOL);
         }

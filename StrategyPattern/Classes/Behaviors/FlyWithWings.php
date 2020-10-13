@@ -6,7 +6,7 @@
 
     class FlyWithWings implements IFlyBehavior {
 
-        public function fly(){
+        public function fly() {
 
             print("I'm flying high with my wings!".PHP_EOL);
         }

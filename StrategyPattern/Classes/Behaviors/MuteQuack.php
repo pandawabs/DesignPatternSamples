@@ -6,7 +6,7 @@
 
     class MuteQuack implements IQuackBehavior {
 
-        public function quack(){
+        public function quack() {
 
             print("I can't quack!".PHP_EOL);
         }

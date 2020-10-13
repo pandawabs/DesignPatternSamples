@@ -6,7 +6,7 @@
 
     class FlyNoWay implements IFlyBehavior {
 
-        public function fly(){
+        public function fly() {
 
             print("I can't fly!".PHP_EOL);
         }

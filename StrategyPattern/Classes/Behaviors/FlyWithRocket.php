@@ -6,7 +6,7 @@
 
     class FlyWithRocket implements IFlyBehavior {
 
-        public function fly(){
+        public function fly() {
 
             print("I'm flying fast, powered by rocket!".PHP_EOL);
         }
