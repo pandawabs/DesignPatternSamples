@@ -1,19 +1,17 @@
 <?php
 
-    namespace ObserverPattern\Classes;
+    namespace ObserverPatternNative\Classes;
 
-    use ObserverPattern\Classes\Data\Weather as WeatherData;
-    use ObserverPattern\Classes\Interfaces\Observable as IObservable;
-    use ObserverPattern\Classes\Interfaces\Observer as IObserver;
-    use ObserverPattern\Classes\Interfaces\Display as IDisplay;
+    use ObserverPatternNative\Classes\Interfaces\Display as IDisplay;
+    use ObserverPatternNative\Classes\WeatherStation;
 
-    class StatisticsDisplay implements IObserver, IDisplay {
+    class StatisticsDisplay implements \SplObserver, IDisplay {
 
         private array $_temperatures;
         private string $_temperatureUnit;
         private array $_humidities;
         private array $_pressures;
-        private ?IObservable $_observable;
+        private ?\SplSubject $_observable;
 
         function __construct() {
 
@@ -24,23 +22,24 @@
             $this->_observable = NULL;
         }
 
-        public function observe(IObservable &$observable) {
+        public function observe(\SplSubject &$observable) {
 
             $this->_observable = $observable;
-            $observable->register($this);
+            $observable->attach($this);
         }
 
         public function stopObserve() {
 
-            $this->_observable->unregister($this);
+            $this->_observable->detach($this);
             $this->_observable = NULL;
             print("Statistic Display: Stopped observe".PHP_EOL);
         }
 
-        public function update($data) {
+        public function update(\SplSubject $observable) {
 
-            if($data instanceof WeatherData)
+            if($observable instanceof WeatherStation)
             {
+                $data = $observable->getWeatherData();
                 $this->_temperatureUnit = $data->temperatureUnit;
                 \array_push($this->_temperatures, $data->temperature);
                 \array_push($this->_humidities, $data->humidity);

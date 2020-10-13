@@ -1,12 +1,10 @@
 <?php
 
-    namespace ObserverPattern\Classes;
+    namespace ObserverPatternNative\Classes;
 
-    use ObserverPattern\Classes\Data\Weather as WeatherData;
-    use ObserverPattern\Classes\Interfaces\Observable as IObservable;
-    use ObserverPattern\Classes\Interfaces\Observer as IObserver;
+    use ObserverPatternNative\Classes\Data\Weather as WeatherData;
 
-    class WeatherStation implements IObservable {
+    class WeatherStation implements \SplSubject {
 
         private \SplObjectStorage $_observers;
         private WeatherData $_weatherData;
@@ -30,15 +28,16 @@
             }
         }
 
-        public function register(IObserver $observer) {
+        public function attach(\SplObserver $observer) {
 
             $this->_observers->attach($observer);
             print("Weather Station: New weather observer registered!".PHP_EOL);
         }
 
-        public function unregister(IObserver $observer) {
+        public function detach(\SplObserver $observer) {
             
             $this->_observers->detach($observer);
+    
         }
 
         public function notify(){
@@ -50,7 +49,7 @@
             while ($this->_observers->valid())
             {
                 $observer = $this->_observers->current();
-                $observer->update($this->_weatherData);
+                $observer->update($this);
 
                 $this->_observers->next();
             }
@@ -62,8 +61,13 @@
                 $this->notify();
         }
 
+        public function getWeatherData() {
+
+            return $this->_weatherData;
+        }
+
         //Function for testing
-        public function setMeasurements(float $temperature, float $humidity, float $pressure, string $temp_unit) {
+        public function setMeasurements($temperature, $humidity, $pressure, $temp_unit) {
 
             $this->_weatherData->temperature = $temperature;
             $this->_weatherData->temperatureUnit = $temp_unit;

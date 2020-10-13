@@ -10,6 +10,10 @@
 
         public static function init() {
 
+            print("----------------------------------------------".PHP_EOL);
+            print("STRATEGY PATTERN SAMPLE".PHP_EOL);
+            print("----------------------------------------------".PHP_EOL);
+
             $regular_duck = new Duck();
             $robot_duck = new RobotDuck();
             $rubber_duck = new RubberDuck();

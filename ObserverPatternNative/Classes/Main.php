@@ -1,16 +1,16 @@
 <?php 
 
-    namespace ObserverPattern\Classes;
+    namespace ObserverPatternNative\Classes;
 
-    use ObserverPattern\Classes\WeatherStation;
-    use ObserverPattern\Classes\{SimpleDisplay,StatisticsDisplay};
+    use ObserverPatternNative\Classes\WeatherStation;
+    use ObserverPatternNative\Classes\{SimpleDisplay,StatisticsDisplay};
 
     class Main {
 
         public static function init() {
 
             print("----------------------------------------------".PHP_EOL);
-            print("OBSERVER PATTERN SAMPLE".PHP_EOL);
+            print("OBSERVER PATTERN NATIVE SAMPLE".PHP_EOL);
             print("----------------------------------------------".PHP_EOL);
 
             $weather_station = new WeatherStation();

@@ -18,12 +18,12 @@
             $this->quackBehavior = new Quack();
         }
 
-        final public function setFlyBehavior($fly_behavior) {
+        final public function setFlyBehavior(FlyBehavior $fly_behavior) {
 
             $this->flyBehavior = $fly_behavior;
         }
         
-        final public function setQuackBehavior($quack_behavior) {
+        final public function setQuackBehavior(QuackBehavior $quack_behavior) {
 
             $this->quackBehavior = $quack_behavior;
         }

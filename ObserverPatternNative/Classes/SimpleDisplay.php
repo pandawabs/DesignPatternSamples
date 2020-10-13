@@ -1,19 +1,17 @@
 <?php
 
-    namespace ObserverPattern\Classes;
+    namespace ObserverPatternNative\Classes;
 
-    use ObserverPattern\Classes\Data\Weather as WeatherData;
-    use ObserverPattern\Classes\Interfaces\Observable as IObservable;
-    use ObserverPattern\Classes\Interfaces\Observer as IObserver;
-    use ObserverPattern\Classes\Interfaces\Display as IDisplay;
+    use ObserverPatternNative\Classes\Interfaces\Display as IDisplay;
+    use ObserverPatternNative\Classes\WeatherStation;
 
-    class SimpleDisplay implements IObserver, IDisplay {
+    class SimpleDisplay implements \SplObserver, IDisplay {
 
         private float $_temperature;
         private string $_temperatureUnit;
         private float $_humidity;
         private float $_pressure;
-        private ?IObservable $_observable;
+        private ?\SplSubject $_observable;
 
         function __construct() {
 
@@ -24,23 +22,24 @@
             $this->_observable = NULL;
         }
 
-        public function observe(IObservable &$observable) {
+        public function observe(\SplSubject &$observable) {
 
             $this->_observable = $observable;
-            $observable->register($this);
+            $observable->attach($this);
         }
 
         public function stopObserve() {
 
-            $this->_observable->unregister($this);
+            $this->_observable->detach($this);
             $this->_observable = NULL;
             print("Simple Display: Stopped observe".PHP_EOL);
         }
 
-        public function update($data) {
+        public function update(\SplSubject $observable) {
 
-            if($data instanceof WeatherData)
+            if($observable instanceof WeatherStation)
             {
+                $data = $observable->getWeatherData();
                 $this->_temperature = $data->temperature;
                 $this->_temperatureUnit = $data->temperatureUnit;
                 $this->_humidity = $data->humidity;
