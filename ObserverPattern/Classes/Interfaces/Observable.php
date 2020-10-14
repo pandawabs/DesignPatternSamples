@@ -6,7 +6,7 @@
 
     interface Observable {
 
-        public function register(IObserver $observer);
-        public function unregister(IObserver $observer);
+        public function register(IObserver &$observer);
+        public function unregister(IObserver &$observer);
         public function notify();
     }

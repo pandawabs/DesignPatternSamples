@@ -67,7 +67,7 @@
         }
 
         //Function for testing
-        public function setMeasurements($temperature, $humidity, $pressure, $temp_unit) {
+        public function setMeasurements(float $temperature, float $humidity, float $pressure, string $temp_unit) {
 
             $this->_weatherData->temperature = $temperature;
             $this->_weatherData->temperatureUnit = $temp_unit;

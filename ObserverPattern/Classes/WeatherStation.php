@@ -30,13 +30,13 @@
             }
         }
 
-        public function register(IObserver $observer) {
+        public function register(IObserver &$observer) {
 
             $this->_observers->attach($observer);
             print("Weather Station: New weather observer registered!".PHP_EOL);
         }
 
-        public function unregister(IObserver $observer) {
+        public function unregister(IObserver &$observer) {
             
             $this->_observers->detach($observer);
         }
