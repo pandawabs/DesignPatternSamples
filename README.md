@@ -9,6 +9,7 @@ Implementation samples of software design pattern based on book O'Reilly® Head 
  - Strategy Pattern
  - Observer Pattern
  - Observer Pattern implements PHP Native interfaces
+ - Decorator Pattern
  - (to be updated soon)
 
 ## Getting Started <a name = "getting_started"></a>
